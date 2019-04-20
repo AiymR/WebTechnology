@@ -1,0 +1,45 @@
+
+<div class="container">
+<div class="row">
+
+
+  <div class="col">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">List of Lists</a>
+      <div *ngFor="let tl of taskLists">
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" (click)="getTasks(tl)">{{tl.name}}</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class="list-group" id="list-tab" role="tablist" *ngIf="current_list" >
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home" *ngIf="current_list">Task of {{current_list.name}}</a>
+      <div *ngFor="let t of tasks">
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" (click)="getTask(t)">{{t.name}}</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+
+
+  <div *ngFor="let t of tasks">
+
+   <div class="card text-white bg-primary mb-3" *ngIf="current_task.id==t.id" style="max-width: 18rem;">
+     <div class="card-header">{{current_task.id}}</div>
+       <div class="card-body">
+         <h5 class="card-title">{{current_task.name}}</h5>
+         <p class="card-text">
+         <b>Created date: </b>{{current_task.created_at}} <br>
+         <b>Due date: </b>{{current_task.due_on}} <br>
+         <b>Status:</b> {{current_task.status}} <br>
+         <b>Task:</b> {{current_task.task_list.name}} <br></p>
+       </div>
+      </div>
+ </div>
+</div>
+</div>
+</div>
