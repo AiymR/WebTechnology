@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <div>Create new TaskList</div>
+        <span><input type="text"class="form-control" [(ngModel)]="name" /></span>
+        <button class="btn btn-primary" type="submit" (click)="createTaskList()">Create</button>
+    </div>
+    <div class="col">
+      <div>Create new Task</div>
+      <div class="form-group m-2">
+         <label>Name</label>
+         <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="task_name">
+         <input type="text" class="form-control" placeholder="Enter creation date" [(ngModel)]="task_created_at">
+
+         <input type="text" class="form-control" placeholder="Enter due on" [(ngModel)]="task_due_on">
+         <label>Status</label>
+         <input type="text" class="form-control" placeholder="Enter status" [(ngModel)]="task_status">
+         <button type="submit" class="btn btn-primary mt-2" (click)="createTask(current_list)">Create</button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center ;margin:50px">
+  <h1>
+    Welcome to ToDo!
+  </h1>
+</div>
+
+<div class="container">
+<div class="row">
+
+<div class="col">
+  <div class="task-list" *ngFor="let tl of taskLists">
+  <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{tl.name}}</h5>
+      <small><button class="btn btn-primary" type="submit" (click)="getTasks(tl)">Tasks</button></small>
+    </div>
+    <button class="btn btn-primary" type="submit" (click)="deleteTaskList(tl)">Delete</button>
+    <button class="btn btn-primary" type="submit" (click)="updateTaskList()">Edit</button>
+    <div *ngIf=updateMode>
+        <span><input type="text"class="form-control" [(ngModel)]="tl.name" /></span>
+    </div>
+  </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="col" *ngIf="current_list">
+  <div class="task-list" *ngFor="let t of tasks">
+  <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{t.name}}</h5>
+      <small><button class="btn btn-primary" type="submit" (click)="getTask(t)">Details</button></small>
+    </div>
+    <span><input type="text"class="form-control" [(ngModel)]="t.name" /></span>
+    <button class="btn btn-primary" type="submit" (click)="deleteTask(t)">Delete</button>
+    <button class="btn btn-primary" type="submit" (click)="updateTask()">Edit</button>
+  </a>
+    </div>
+  </div>
+</div>
+
+  <!-- <div class="col">
+    <div class="list-group" id="list-tab" role="tablist" *ngIf="current_list" >
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home" *ngIf="current_list">Task of {{current_list.name}}</a>
+      <div *ngFor="let t of tasks">
+        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" (click)="getTask(t)">{{t.name}}</a>
+        <button class="btn btn-primary" type="submit" (click)="deleteTaskList(tl.id)">Delete</button>
+        <button class="btn btn-primary" type="submit" (click)="updateTaskList()">Edit</button>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="col" *ngIf="mode=='detail'">
+
+
+  <div *ngFor="let t of tasks">
+
+   <div class="card text-white bg-primary mb-3" *ngIf="current_task.id==t.id" style="max-width: 18rem;">
+     <div class="card-header">{{current_task.id}}</div>
+       <div class="card-body">
+         <h5 class="card-title">{{current_task.name}}</h5>
+         <p class="card-text">
+         <b>Created date: </b>{{current_task.created_at}} <br>
+         <b>Due date: </b>{{current_task.due_on}} <br>
+         <b>Status:</b> {{current_task.status}} <br>
+         <b>Task:</b> {{current_task.task_list.name}} <br></p>
+       </div>
+      </div>
+ </div>
+</div>
+
+
+<div class="col" *ngIf="mode=='edit'">
+
+
+<div *ngFor="let t of tasks">
+
+ <div class="card text-white bg-primary mb-3" *ngIf="current_task.id==t.id" style="max-width: 18rem;">
+   <div class="card-header">{{current_task.id}}</div>
+     <div class="card-body">
+       <h5 class="card-title">{{current_task.name}}</h5>
+       <p class="card-text">
+       <b>Created date: </b>{{current_task.created_at}} <br>
+       <b>Due date: </b>{{current_task.due_on}} <br>
+       <b>Status:</b> {{current_task.status}} <br>
+       <b>Task:</b> {{current_task.task_list.name}} <br></p>
+     </div>
+    </div>
+</div>
+</div>
+
+
+
+
+</div>
+</div>
