@@ -17,17 +17,8 @@ class TaskListSerializer(serializers.Serializer):
         return taskList
 
 
-class TaskSerializer(serializers.ModelSerializer):
-    task_list = TaskListSerializer
-
-    class Meta:
-        model = Task
-        fields = ['id', 'name', 'created_at', 'due_on', 'status', 'task_list']
-
 class SimpleSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-
-    class Meta:
-        model = Task
-        fields = ('id', 'name', 'status')
-
+	task_list = TaskListSerializer
+	class Meta:
+		model = Task
+		fields = ('id', 'name', 'created_at', 'due_on', 'status', 'task_list')

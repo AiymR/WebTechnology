@@ -1,3 +1,4 @@
+<app-todolist></app-todolist>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -78,7 +79,7 @@
   </div> -->
 
 
-  <div class="col" *ngIf="mode=='detail'">
+  <div class="col">
 
 
   <div *ngFor="let t of tasks">
@@ -97,25 +98,6 @@
  </div>
 </div>
 
-
-<div class="col" *ngIf="mode=='edit'">
-
-
-<div *ngFor="let t of tasks">
-
- <div class="card text-white bg-primary mb-3" *ngIf="current_task.id==t.id" style="max-width: 18rem;">
-   <div class="card-header">{{current_task.id}}</div>
-     <div class="card-body">
-       <h5 class="card-title">{{current_task.name}}</h5>
-       <p class="card-text">
-       <b>Created date: </b>{{current_task.created_at}} <br>
-       <b>Due date: </b>{{current_task.due_on}} <br>
-       <b>Status:</b> {{current_task.status}} <br>
-       <b>Task:</b> {{current_task.task_list.name}} <br></p>
-     </div>
-    </div>
-</div>
-</div>
 
 
 

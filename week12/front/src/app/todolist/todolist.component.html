@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="form">
+      <div>Create new TaskList</div>
+      <span><input type="text"class="form-control" [(ngModel)]="name" /></span>
+      <button class="btn btn-primary" type="submit" (click)="createTaskList()">Create</button>
+  </div>
+<div class="row">
+  <div class="col">
+    <div  class="task"*ngFor="let tl of taskLists">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{tl.name}}</h5>
+
+          <button type="button" class="btn btn-secondary btn-sm" (click)="deleteTaskList(tl)">Delete</button>
+        <a routerLink="/task_list/{{tl.id}}/task"><button type="button" class="btn btn-secondary btn-sm">Tasks</button></a>
+          <p>
+          <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed && updateTaskList(tl) "
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Edit
+          </button>
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col ">
+    <div *ngIf="updateMode">
+        <div>Edit {{current_list.name}}</div>
+      <span><input type="text"class="form-control" [(ngModel)]="current_list.name" /></span>
+    </div>
+  </div> -->
+<div class="col">
+  <div  id="collapseExample" [ngbCollapse]="isCollapsed" *ngIf="updateMode">
+    <div class="card">
+      <div class="card-body">
+      <input type="text"class="form-control" [(ngModel)]="current_list.name" />
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>

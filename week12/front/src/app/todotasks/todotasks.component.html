@@ -1,0 +1,69 @@
+<div class="container">
+  <h5>Welcome to tasks!</h5>
+  <button type="button" class="btn btn-secondary btn-sm" (click)="updateMode('create')">Create</button>
+  <div *ngIf="mode=='create'">
+    <h5>Create Task</h5>
+          <div class="form-group m-2">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="task_name">
+            <label>Created at</label>
+            <input type="text" class="form-control" placeholder="Enter creation date" [(ngModel)]="created_at">
+            <label>Due on</label>
+            <input type="text" class="form-control" placeholder="Enter due on" [(ngModel)]="due_on">
+            <label>Status</label>
+            <input type="text" class="form-control" placeholder="Enter status" [(ngModel)]="status">
+            <button type="submit" class="btn btn-outline-dark m-2" (click)="createTask(id, task_name,created_at, due_on, status)">Create</button>
+          </div>
+  </div>
+<div class="row">
+  <div class="col">
+    <div  class="task"*ngFor="let tl of tasks">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{tl.name}}</h5>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="getTask(tl)">Detail</button>
+          <!-- <button type="button" class="btn btn-secondary btn-sm" (click)="updateMode('edit')">Edit</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="deleteTask(tl)">Delete</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col" *ngIf="mode=='detail'">
+    <div class="card text-white bg-primary mb-3"style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{current_task.name}}</h5>
+          <p class="card-text">
+          <b>Created date: </b>{{current_task.created_at}} <br>
+          <b>Due date: </b>{{current_task.due_on}} <br>
+          <b>Status:</b> {{current_task.status}} <br>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="updateMode('edit')">Edit</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="deleteTask(current_task)">Delete</button>
+        </div>
+       </div>
+  </div>
+
+  <div class="col" *ngIf="mode=='delete'">
+    <div class="card text-white bg-primary mb-3"style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Deleted</h5>
+        </div>
+       </div>
+  </div>
+  <div class="col" *ngIf="mode=='edit'">
+
+    <div class="form-group m-2">
+<label>Name</label>
+<input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="current_task.name">
+<label>Created at</label>
+<input type="text" class="form-control" placeholder="Enter creation date" [(ngModel)]="current_task.created_at">
+<label>Due on</label>
+<input type="text" class="form-control" placeholder="Enter due on" [(ngModel)]="current_task.due_on">
+<label>Status</label>
+<input type="text" class="form-control" placeholder="Enter status" [(ngModel)]="current_task.status">
+<button type="submit" class="btn btn-outline-dark m-2" (click)="updateTask(current_task)">Update</button>
+</div>
+
+
+</div>
+</div>
+</div>

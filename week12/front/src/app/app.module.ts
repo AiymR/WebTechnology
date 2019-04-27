@@ -8,11 +8,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProviderService} from './shared/services/provider.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { TodoComponent } from './todo/todo.component';
+import { TodolistComponent } from './todolist/todolist.component';
+import { TodotasksComponent } from './todotasks/todotasks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    TodoComponent,
+    TodolistComponent,
+    TodotasksComponent
   ],
   imports: [
     BrowserModule,

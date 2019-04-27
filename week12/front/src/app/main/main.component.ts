@@ -16,8 +16,6 @@ export class MainComponent implements OnInit {
   public task_name: any='';
   public mode:String='';
  public updateMode = false;
-
-public task_name: any='';
 public task_created_at: any='';
 public task_due_on: any='';
 public task_status: any='';
@@ -38,10 +36,9 @@ public task_status: any='';
   }
 
 
-getTasks(taskLists: ITaskList){
-      this.provider.getTasks(taskLists).then(res => {
+getTasks(id: number){
+      this.provider.getTasks(id).then(res => {
         this.tasks = res;
-        this.current_list = taskLists;
       })
     }
 
@@ -82,25 +79,33 @@ deleteTaskList(c: ITaskList) {
     });
   }
 
-   deleteTask(task: ITask) {
-    this.provider.deleteTask(task).then(res => {
-      this.provider.getTasks(taskLists).then(r => {
-        this.tasks = r;
-        this.current_list = taskLists;
-      });
-    });
-  }
+  //  deleteTask(task: ITask) {
+  //   this.provider.deleteTask(task).then(res => {
+  //     this.provider.getTask(task).then(r => {
+  //       this.tasks = r;
+  //       this.mtasks.
+  //     });
+  //   });
+  // }
 
-createTask(task_list: ITaskList){
-    this.provider.createTask(task_list, this.task_name, this.task_created_at, this.task_due_on, this.task_status).then(res => {
-      this.tasks.push(res);
-      this.task_list_name = '';
-      this.task_created_at = '';
-      this.task_due_on = '';
-      this.task_status = ''
-    })
+//   deleteTask(c: ITask) {
+//   this.provider.deleteTask(c.id).then(res => {
+//     this.provider.getCategories().then(r => {
+//       this.tasks = r;
+//     });
+//   });
+// }
 
-}
+// createTask(task_list: ITaskList){
+//     this.provider.createTask(task_list, this.task_name, this.task_created_at, this.task_due_on, this.task_status).then(res => {
+//       this.tasks.push(res);
+//       this.task_list_name = '';
+//       this.task_created_at = '';
+//       this.task_due_on = '';
+//       this.task_status = ''
+//     })
+//
+// }
 
 
 }
