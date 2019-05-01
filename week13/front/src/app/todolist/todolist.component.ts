@@ -12,12 +12,22 @@ public taskLists :ITaskList[]=[];
 public name: any = "";
 public updateMode = false;
 public current_list: ITaskList;
+public logged = false;
+public login: any ="" ;
+public password: any = "";
   constructor(private provider: ProviderService) { }
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+    if(token){
+      this.logged=true;
+}
+    if(this.logged){
     this.provider.getTaskLists().then(res => {
       this.taskLists = res;
     });
+
+}
 }
 createTaskList() {
           if (this.name !== "") {
@@ -44,5 +54,23 @@ updateTaskList(taskList: ITaskList) {
         });
       });
     }
+
+  auth(){
+    if(this.login!=='' && this.password!==''){
+      this.provider.auth(this.login,this.password).then(res=>{
+        localStorage.setItem('token',res.token);
+        this.logged=true;
+        this.provider.getTaskLists().then(r => {
+          this.taskLists = r;
+        });
+      })
+    }
+  }
+  logout(){
+    this.provider.logout().then(res => {
+      localStorage.clear();
+      this.logged=false;
+    });
+  }
 
 }

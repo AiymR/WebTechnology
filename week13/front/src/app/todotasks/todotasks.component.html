@@ -31,11 +31,11 @@
   <div class="col" *ngIf="mode=='detail'">
     <div class="card text-white bg-primary mb-3"style="max-width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{current_task.name}}</h5>
+          <h5 class="card-title">{{current_task?.name}}</h5>
           <p class="card-text">
-          <b>Created date: </b>{{current_task.created_at}} <br>
-          <b>Due date: </b>{{current_task.due_on}} <br>
-          <b>Status:</b> {{current_task.status}} <br>
+          <b>Created date: </b>{{current_task?.created_at}} <br>
+          <b>Due date: </b>{{current_task?.due_on}} <br>
+          <b>Status:</b> {{current_task?.status}} <br>
           <button type="button" class="btn btn-secondary btn-sm" (click)="updateMode('edit')">Edit</button>
           <button type="button" class="btn btn-secondary btn-sm" (click)="deleteTask(current_task)">Delete</button>
         </div>
@@ -56,7 +56,9 @@
 <label>Name</label>
 <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="current_task.name">
 <label>Created at</label>
-<input type="text" class="form-control" placeholder="Enter creation date" [(ngModel)]="current_task.created_at">
+<input type="text" class="form-control" placeholder="Enter creation date"  [(ngModel)]="current_task.created_at">
+<!-- <input type="text" ngbDatepicker #d="ngbDatepicker"/> -->
+<!-- <button (click)="d.toggle()">Toggle</button> -->
 <label>Due on</label>
 <input type="text" class="form-control" placeholder="Enter due on" [(ngModel)]="current_task.due_on">
 <label>Status</label>

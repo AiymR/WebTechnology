@@ -1,8 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+class TaskListManager(models.Model):
+    def for_user(self,user):
+        self.filter(owner=user)
 
 class TaskList(models.Model):
     name = models.CharField(max_length=255)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default = None)
 
     def to_json(self):
         return {

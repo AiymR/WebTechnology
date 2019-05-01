@@ -18,6 +18,7 @@ public task_name: any = '';
 public status: any = '';
 public created_at: any = '';
 public due_on: any = '';
+public owner: any = '';
   constructor(
     private provider: ProviderService,
     private route: ActivatedRoute) { }
@@ -42,10 +43,11 @@ createTask(id: number){
       this.task_name = '';
       this.created_at = '';
       this.due_on = '';
-      this.status = ''
+      this.status = '';
     })
     this.getTasks(this.id);
 }
+
 
 getTask(task: ITask){
   this.updateMode('detail');
